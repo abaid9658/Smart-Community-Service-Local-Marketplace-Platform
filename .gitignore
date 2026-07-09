@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.local
+.env.production
+dist/
+build/
+.next/
+*.log
+.DS_Store
+Thumbs.db
+coverage/
+.nyc_output/
+prisma/migrations/dev.db
+uploads/

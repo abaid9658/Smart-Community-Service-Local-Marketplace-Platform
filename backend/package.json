@@ -1,0 +1,52 @@
+{
+  "name": "localhub-backend",
+  "version": "1.0.0",
+  "description": "LocalHub Marketplace — Express.js + TypeScript Backend",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:seed": "ts-node src/seed.ts"
+  },
+  "keywords": [],
+  "author": "LocalHub",
+  "license": "ISC",
+  "dependencies": {
+    "@types/streamifier": "^0.1.2",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^1.41.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.3",
+    "morgan": "^1.11.0",
+    "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^9.0.3",
+    "socket.io": "^4.8.3",
+    "streamifier": "^0.1.1",
+    "stripe": "^22.3.0",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.1.0",
+    "@types/nodemailer": "^8.0.1",
+    "@types/uuid": "^10.0.0",
+    "slugify": "^1.6.9",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}
