@@ -10,10 +10,22 @@ let io: SocketServer;
 // Map userId -> socketId for presence tracking
 const onlineUsers = new Map<string, string>();
 
+const socketAllowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
 export const initSocket = (httpServer: HttpServer): SocketServer => {
   io = new SocketServer(httpServer, {
     cors: {
-      origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+      origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        if (socketAllowedOrigins.includes(origin)) return callback(null, true);
+        if (origin.endsWith('.vercel.app') || origin.endsWith('.vercel.dev') || origin.endsWith('.render.com')) {
+          return callback(null, true);
+        }
+        return callback(new Error(`Socket CORS: origin ${origin} not allowed`));
+      },
       credentials: true,
     },
   });

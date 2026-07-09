@@ -215,7 +215,7 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
 
 Workflows auto-trigger on push to `main`:
 - **Backend changes** → TypeScript check → Build → Trigger Render deploy hook
-- **Frontend changes** → TypeScript check → Deploy to Vercel via Vercel Action
+- **Frontend changes** → TypeScript check → Build → Deploy to Vercel
 
 Add these **GitHub Secrets**:
 | Secret | Where to find |
@@ -225,13 +225,20 @@ Add these **GitHub Secrets**:
 | `VERCEL_PROJECT_ID` | `.vercel/project.json` after `vercel link` |
 | `RENDER_DEPLOY_HOOK_URL` | Render → Service Settings → Deploy Hooks |
 
-### Update CORS After Deployment
+### CORS / Origin Allowlist
 
-Once deployed, update `FRONTEND_URL` in Render env vars:
+The backend is configured to allow:
+- your Vercel frontend domain
+- `*.vercel.app` and `*.vercel.dev` subdomains
+- localhost during development
+- Render domains for API-to-browser calls
+
+Set the backend environment variable on Render to a comma-separated list such as:
+```env
+FRONTEND_URL=https://your-app.vercel.app,http://localhost:3000
 ```
-FRONTEND_URL=https://smart-community-service.vercel.app,http://localhost:3000
-```
-The backend CORS config already supports comma-separated origins and all `*.vercel.app` subdomains automatically.
+
+The same value is used for Socket.IO CORS, so real-time chat will work after deployment.
 
 ---
 

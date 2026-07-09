@@ -49,19 +49,26 @@ app.use(helmet());
 
 const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000')
   .split(',')
-  .map(o => o.trim())
+  .map((o) => o.trim())
   .filter(Boolean);
+
+const isAllowedOrigin = (origin: string | undefined): boolean => {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  if (origin.endsWith('.vercel.app')) return true;
+  if (origin.endsWith('.vercel.dev')) return true;
+  if (origin.endsWith('.render.com')) return true;
+  return false;
+};
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (Postman, server-to-server)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    // Allow any vercel.app subdomain in production
-    if (origin.endsWith('.vercel.app')) return callback(null, true);
+    if (isAllowedOrigin(origin)) return callback(null, true);
     return callback(new Error(`CORS: origin ${origin} not allowed`));
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }));
 
 // ── Rate Limiting ─────────────────────────────────────────────────
