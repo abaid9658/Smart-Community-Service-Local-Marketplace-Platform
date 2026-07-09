@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request as ExpressRequest, Response, NextFunction } from 'express';
 import { verifyAccessToken } from '../config/jwt';
 import User from '../models/User.model';
 
-export interface AuthRequest extends Request {
+export interface AuthRequest extends ExpressRequest {
   user?: {
     userId: string;
     role: string;
