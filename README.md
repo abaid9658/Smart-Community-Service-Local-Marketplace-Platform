@@ -1,7 +1,9 @@
 # 🏘️ LocalHub — Smart Community Service & Local Marketplace Platform
 
 > A full-stack marketplace connecting local buyers, sellers, and service providers with real-time messaging, Stripe payments, and an admin dashboard.
-
+https://localhub-backend-t0f2.onrender.com
+https://smart-community-service-local-marke.vercel.app/
+> 
 [![Deploy Frontend](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://your-app.vercel.app)
 [![Deploy Backend](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render)](https://your-api.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
